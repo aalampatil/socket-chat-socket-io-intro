@@ -12,7 +12,7 @@ as event named (chat message) it gets detected by on
 
 ## information handshake contains after getting connected
 
--a user connected
+a user connected
  id: 'puoQCN0DS_Z12hkbAAAB',
   handshake: {
     headers: {
@@ -45,7 +45,7 @@ as event named (chat message) it gets detected by on
     auth: {}
   },
 
-##after emit, broadcasting happens
+## after emit, broadcasting happens
 - emit = in order to send an event to everyone (including sender).
 - broadcast = to everyone, except for a certain emitting socket, broadcast flag for emitting from that socket (like not sending message to the sender)
 
@@ -53,7 +53,7 @@ as event named (chat message) it gets detected by on
 ## basic emit
 // client to server
 ### client to server
- = ** socket.emit("event name", arg) **
+ = socket.emit("event name", arg) 
 
 ### server
  = io.on("connection", (socket) => {
@@ -65,3 +65,10 @@ as event named (chat message) it gets detected by on
 })
 
 ## we can send any number of args, and all serializavle DS are supported, including binary objects like ArrayBuffer, TypedBuffer or Buffer
+
+## Rooms
+In Socket.IO jargon, a room is an arbitrary channel that sockets can join and leave. It can be used to broadcast events to a subset of connected clients:
+
+## handling disconnections
+
+## connection state recovery
