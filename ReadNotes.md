@@ -52,12 +52,16 @@ as event named (chat message) it gets detected by on
 # common api -
 ## basic emit
 // client to server
--client to server = socket.emit("event name", arg)
+### client to server
+ = ** socket.emit("event name", arg) **
 
--server = io.on("connection", (socket) => {
+### server
+ = io.on("connection", (socket) => {
   //server to client
   socket.on("event name", (arg) => {
     io.emit("chat message", arg)
     console.log("message: " + arg); 
   })
 })
+
+## we can send any number of args, and all serializavle DS are supported, including binary objects like ArrayBuffer, TypedBuffer or Buffer
