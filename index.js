@@ -3,6 +3,7 @@ import http from "http";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import {Server} from "socket.io"
+import { log } from "console";
 
 const app = express();
 const server = http.createServer(app);
@@ -11,7 +12,17 @@ const io = new Server(server)
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  console.log(`a user connected ${socket.id}`);
+  //console.log(socket);
+  
+  socket.on("chat message", (msg) => {
+    io.emit("chat message", msg)
+    console.log("message: " + msg);   
+  })
+
+  socket.on('disconnect', () => {
+    console.log("a user disconnected");
+  });
 });
 
 app.get("/", (req, res) => {
